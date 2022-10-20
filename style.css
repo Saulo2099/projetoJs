@@ -11,9 +11,18 @@
         background-position: 0% 50%;
     }
 }
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+}
 
 main {
-    margin: 9%;
+    margin: 90px;
+    width: 1200px;
+    min-width: 250px;
+    height: 100vh; 
     font-size: 23px;
     font-family: 'Times New Roman', Times, serif;
 
@@ -41,7 +50,8 @@ div #imc{
 
 .efeito-vidro {
     min-width: 250px;
-    width: 40%;
+    width: 500px;
+    height: auto;
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(1, 1, 2, 0.555);
     backdrop-filter: blur(13.5px);
@@ -51,9 +61,10 @@ div #imc{
 }
 
 .enefeito-vidro {
-    min-width: 250;
+    min-width: 250px;
 
-    width: 70%;
+    width: 800px;
+    height: auto;
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(1, 1, 2, 0.555);
     backdrop-filter: blur(13.5px);
