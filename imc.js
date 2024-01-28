@@ -1,46 +1,120 @@
-
 function imc() {
-    let peso = Number(document.querySelector('.peso').value);
-    let altura = Number(document.querySelector('.altura').value);
-    var result = document.querySelector("#result");
+
+    let peso = Number(document.querySelector(".peso").value);
+    let altura = Number(document.querySelector(".altura").value);
+    
+
+
 
     if (peso == "" || altura == "") {
         Swal.fire({
-            icon: 'error',
-            title: 'Atenção!!!',
-            text: 'Algum campo de preenchimento está vazio!!!',
-
-        })
-
+            icon: "error",
+            title: "Atenção!!!",
+            text: "Algum campo de preenchimento está vazio!!!",
+        });
     } else {
+        mostrarDiv();
 
-        let imc = peso / (altura ** 2);
-
+        let imc = peso / altura ** 2;
 
         if (imc < 20.7) {
-            result.innerHTML = (`Seu peso é: <strong>${peso.toFixed(1)} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(2)} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(1)}</strong> <br> <strong>Você está abaixo do peso.</strong>`);
+            result.innerHTML = `Seu peso é: <strong>${peso.toFixed(
+                1
+            )} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(
+                2
+            )} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(
+                1
+            )}</strong> <br> <strong>Você está abaixo do peso.</strong>`;
         } else if (imc >= 20.7 && imc < 26.5) {
-            result.innerHTML = (`Seu peso é: <strong>${peso.toFixed(1)} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(2)} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(1)}</strong> <br> <strong>Você está com peso ideal.</strong>`);
+            result.innerHTML = `Seu peso é: <strong>${peso.toFixed(
+                1
+            )} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(
+                2
+            )} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(
+                1
+            )}</strong> <br> <strong>Você está com peso ideal.</strong>`;
         } else if (imc >= 26.5 && imc < 27.8) {
-            result.innerHTML = (`Seu peso é: <strong>${peso.toFixed(1)} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(2)} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(1)}</strong> <br> <strong>Você está um pouco acima do peso.</strong>`);
+            result.innerHTML = `Seu peso é: <strong>${peso.toFixed(
+                1
+            )} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(
+                2
+            )} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(
+                1
+            )}</strong> <br> <strong>Você está um pouco acima do peso.</strong>`;
         } else if (imc >= 27.8 && imc < 31.1) {
-            result.innerHTML = (`Seu peso é: <strong>${peso.toFixed(1)} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(2)} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(1)}</strong> <br> <strong>Você está acima do peso.</strong>`);
+            result.innerHTML = `Seu peso é: <strong>${peso.toFixed(
+                1
+            )} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(
+                2
+            )} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(
+                1
+            )}</strong> <br> <strong>Você está acima do peso.</strong>`;
         } else {
-            result.innerHTML = (`Seu peso é: <strong>${peso.toFixed(1)} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(2)} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(1)}</strong> <br> <strong>Você está obeso.</strong>`);
-
+            result.innerHTML = `Seu peso é: <strong>${peso.toFixed(
+                1
+            )} kg</strong>  <br> Sua altura é: <strong>${altura.toFixed(
+                2
+            )} cm</strong> <br> Seu IMC é : <strong>${imc.toFixed(
+                1
+            )}</strong> <br> <strong>Você está obeso.</strong>`;
         }
     }
 }
 
+function mostrarDiv() {
+    const divExistente = document.querySelector(".result");
+    if (divExistente) {
+        divExistente.remove();
+    } else {
+        // Cria um novo elemento <div>
+        const div = document.createElement("div");
+
+        // Obtém a referência ao elemento com a classe "input"
+        const input = document.querySelector(".input");
+
+        // Adiciona a classe "result" à div
+        div.classList.add("result");
+
+        // Insere a div como um filho do elemento com a classe "input"
+        input.insertAdjacentElement("beforeend", div);
+
+        // Cria um novo elemento <p>
+        const p = document.createElement("p");
+
+        // Adiciona a identificação "result" ao parágrafo
+        p.id = "result";
+
+        // Obtém a referência à div com a classe "result"
+        const mostrar = document.querySelector(".result");
+
+        // Insere o parágrafo como um filho da div
+        mostrar.insertAdjacentElement("afterbegin", p);
+
+        var result = document.querySelector("#result");
+
+
+    }
+    // Adiciona algum texto ao parágrafo
+
+}
+function apagarDiv() {
+    // Obtém a referência à div com a classe "result"
+    const divParaExcluir = document.querySelector(".result");
+
+    // Verifica se a div existe antes de tentar excluí-la
+    if (divParaExcluir) {
+        divParaExcluir.remove(); // Remove a div
+    }
+
+}
 function tabuada() {
     let tabuada = [5];
     tabuada[0] = Number(document.querySelector("#inicio").value);
-    tabuada[1] = Number(document.querySelector("#final").value);
-    tabuada[3] = document.querySelector("#result");
+
     tabuada[2] = document.querySelector('#opera').value;
 
 
-    if (tabuada[0] === 0 || tabuada[1] === 0) {
+    if (tabuada[0] === 0) {
         Swal.fire({
             icon: 'error',
             title: 'Atenção!!!',
@@ -48,43 +122,52 @@ function tabuada() {
 
         })
 
+    } else if (tabuada[2] == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Escolha um dos operadores!',
+
+        })
     } else {
+        mostrarDiv();
+        tabuada[3] = document.querySelector("#result");
         tabuada[3].innerHTML = ("");
         switch (tabuada[2]) {
             case "+":
 
-                for (i = 0; i <= tabuada[1]; i++) {
-                    tabuada[4] = Number(tabuada[0] + i);
-                    tabuada[3].innerHTML += (`${i} + ${tabuada[0]} = ${tabuada[4]} <br> `);
+                for (i = 0; i <= 10; i++) {
+                    tabuada[4] = tabuada[0] + i;
+                    tabuada[3].innerHTML += (`${tabuada[0]} + ${i} = ${tabuada[4]} <br> `);
                 }
                 break
 
             case "-":
-                for (i = tabuada[0]; i <= tabuada[1]; i++) {
 
-                    tabuada[4] = i - tabuada[0];
-                    tabuada[3].innerHTML += (`${i} - ${tabuada[0]} = ${tabuada[4]} <br> `);
+                for (i = 0; i <= 10; i++) {
+                    tabuada[4] = (tabuada[0] + i) - tabuada[0];
+                    tabuada[3].innerHTML += (`${tabuada[0] + i} - ${tabuada[0]} = ${tabuada[4]} <br> `);
                 }
+
                 break
 
             case "*":
-                for (i = 0; i <= tabuada[1]; i++) {
+                for (i = 0; i <= 10; i++) {
                     tabuada[4] = i * tabuada[0];
-                    tabuada[3].innerHTML += (`${i} x ${tabuada[0]} = ${tabuada[4]} <br>`);
+                    tabuada[3].innerHTML += (`${tabuada[0]} x ${i}   = ${tabuada[4]} <br>`);
                 }
                 break
 
             case "/":
 
-                for (i = tabuada[0]; i <= tabuada[1]; i++) {
-                    if (i % tabuada[0] == 0) {
-                        tabuada[4] = i / tabuada[0];
-                        tabuada[3].innerHTML += (`${i} / ${tabuada[0]} =  ${tabuada[4]}<br>`);
-                    }
+                for (i = 0; i <= 10; i++) {
+
+                    tabuada[4] = (tabuada[0] * i) / tabuada[0];
+                    tabuada[3].innerHTML += (`${tabuada[0] * i} ÷ ${tabuada[0]} =  ${tabuada[4]}<br>`);
+
                 }
+
                 break
-
-
         }
     }
 }
@@ -93,7 +176,7 @@ function custo() {
     var custo = document.querySelector('.custo').value;
     var porcen = document.querySelector('.porcen').value;
     var impost = document.querySelector('.impos').value;
-    var result = document.querySelector('#result');
+
 
     if (custo == "" || porcen == "" || impost == "") {
         Swal.fire({
@@ -102,6 +185,8 @@ function custo() {
             text: 'Algum campo de preenchimento está vazio!!!',
         })
     } else {
+        mostrarDiv();
+
         var porce = (porcen / 100) * custo;
         var impos = (impost / 100) * custo;
         var calc = parseFloat(custo) + parseInt(porce) + parseInt(impos);
@@ -161,6 +246,7 @@ function eleicao() {
 var cont = 0;
 let total = 0;
 function comissao() {
+
     let salario = Number(document.querySelector('.salario').value);
     let valor = Number(document.querySelector('.valor').value);
     let calc;
@@ -174,7 +260,6 @@ function comissao() {
         })
 
     } else {
-        valor = Number(document.querySelector('.valor').value);
         calc = valor * 0.05;
         total += calc;
         cont += 1;
@@ -213,6 +298,163 @@ function pesoideal() {
     }
 }
 
+function gorjeta() {
+    var conta = document.querySelector('.salarioAtual').value;
+    var result = document.querySelector("#result");
+    if (conta == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Algum campo de preenchimento está vazio!!!',
+
+        })
+
+    } else {
+        var taxa = 10 / 100;
+        var garcom = taxa * conta;
+        var total = parseFloat(garcom) + parseFloat(conta);
+        result.innerHTML = (`10% do garçom: ${(garcom.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }))} <br>
+    Total: ${(total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }))}`);
+    }
+}
+
+function dobro() {
+    var num = document.querySelector('.num').value;
+    var result = document.querySelector("#result");
+    const dobro = 2;
+    if (num == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Algum campo de preenchimento está vazio!!!',
+
+        })
+
+    } else {
+        var total = num * dobro;
+        result.innerHTML = `O número é: <b>${num}</b> <br> Seu dobro é: <b>${total}</b>`;
+    }
+}
+
+var notas = [];
+function media() {
+    var valor = document.querySelector('.notas').value;
+    var result = document.querySelector("#result");
+
+
+    if (valor == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Algum campo de preenchimento está vazio!!!',
+
+        })
+
+    } else {
+        notas.push(valor);
+        var total = notas.reduce(function (soma, i) {
+            return parseFloat(soma) + parseFloat(i);
+        });
+        var media = total / notas.length;
+        result.innerHTML = (`Notas: <b>${notas}</b> <br> Soma: <b>${total}</b> <br> Média: <b>${media.toFixed(1)}</b>`)
+    }
+}
+
+function parimpar() {
+    var num = document.querySelector('.parimpar').value;
+    var result = document.querySelector('#result');
+    resto = num % 2
+    if (num == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Algum campo de preenchimento está vazio!!!',
+
+        })
+    } else if (resto == 0) {
+        result.innerHTML = (`O número <b>${num}</b> é <b>PAR</b>.`)
+
+    } else {
+        result.innerHTML = (`O número <b>${num}</b> é <b>ÍMPAR</b>.`)
+    }
+}
+
+const segundos = 1000;
+const minutos = segundos * 60;
+const horas = minutos * 60;
+const dias = horas * 24;
+function contadorDias() {
+    var result = document.querySelector('#result');
+    let dataNasc = document.querySelector("#inicio").value;
+    let dataAtual = document.querySelector("#fim").value;
+    var inicio = new Date(dataNasc);
+    var fim = new Date(dataAtual);
+    if (dataNasc == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Campo de data de nascimento está vazio!!!',
+
+        })
+    } else if (dataAtual == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Campo de data atual está vazio!!!',
+
+        })
+    } else {
+        contar = fim.getTime() - inicio.getTime();
+        ano = fim.getYear() - inicio.getYear()
+        total = contar / dias;
+        result.innerHTML = (`Idade: <b>${ano}</b> anos. <br> Idade em dias: <b>${total.toLocaleString('pt-BR')}</b> dias.`);
+    }
+}
+function contadorHoras() {
+    var result = document.querySelector('#result');
+    let dataNasc = document.querySelector("#inicio").value;
+    let dataAtual = document.querySelector("#fim").value;
+    var inicio = new Date(dataNasc);
+    var fim = new Date(dataAtual);
+    if (dataNasc == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Campo de data de nascimento está vazio!!!',
+
+        })
+    } else if (dataAtual == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Campo de data atual está vazio!!!',
+
+        })
+    } else {
+        contar = fim.getTime() - inicio.getTime();
+        ano = fim.getYear() - inicio.getYear()
+        total = contar / horas;
+        result.innerHTML = (`Idade: <b>${ano}</b> anos. <br> Idade em horas: <b>${total.toLocaleString('pt-BR')}</b> horas.`);
+    }
+}
+function antecessor() {
+    var num1 = document.querySelector('.antecessor').value;
+   
+    if (num1 == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Atenção!!!',
+            text: 'Algum campo de preenchimento está vazio!!!',
+
+        })
+
+    } else {
+        mostrarDiv();
+        var anter = num1 - 1;
+        result.innerHTML = (`Número: <b>${num1}</b>  <br> Antecessor: <b>${anter}</b> `)
+    }
+}
+
 function limpar() {
     var peso = document.querySelector('.peso');
     var altura = document.querySelector('.altura');
@@ -220,18 +462,20 @@ function limpar() {
     peso.value = ("");
     altura.value = ("");
     result.innerHTML = ("");
+    apagarDiv();
 
 }
-
 function limpar1() {
     var inicio = document.querySelector('#inicio');
-    var final = document.querySelector('#final');
+
     var operar = document.querySelector("#opera");
     var result = document.querySelector('#result');
     inicio.value = ("");
-    final.value = ("");
+
     operar.value = ("");
     result.innerHTML = ("");
+    apagarDiv();
+
 }
 function limpar2() {
     var custo = document.querySelector('.custo');
@@ -242,6 +486,7 @@ function limpar2() {
     porcen.value = ("");
     impost.value = ("");
     result.innerHTML = ("");
+    apagarDiv();
 }
 function limpar3() {
     var salar = document.querySelector('.salar');
@@ -250,6 +495,7 @@ function limpar3() {
     salar.value = ("");
     percen.value = ("");
     result.innerHTML = ("");
+    apagarDiv();
 }
 function limpar4() {
     var votosN = document.querySelector('.votosN');
@@ -261,6 +507,7 @@ function limpar4() {
     votosV.value = ("");
 
     result.innerHTML = ("");
+    apagarDiv();
 }
 function limpar5() {
     var custo = document.querySelector('.custo');
@@ -271,6 +518,7 @@ function limpar5() {
     porcen.value = ("");
     impost.value = ("");
     result.innerHTML = ("");
+    apagarDiv();
 }
 function limpar6() {
     var salario = document.querySelector('.salario');
@@ -298,4 +546,82 @@ function limpar7() {
     result.innerHTML = ("");
 
 
+}
+function limpar8() {
+    var num = document.querySelector('.num');
+    num.value = ("");
+    result.innerHTML = ("");
+
+
+}
+function limpar9() {
+    var valor = document.querySelector('.notas');
+    valor.value = ("");
+    notas = [];
+    result.innerHTML = ("");
+
+
+}
+function limparnota() {
+    var valor = document.querySelector('.notas');
+    valor.value = ("");
+}
+function limpar10() {
+    var num = document.querySelector('.parimpar');
+    num.value = ("");
+    result.innerHTML = ("");
+
+
+}
+function limpar11() {
+    var result = document.querySelector('#result');
+    let dataNasc = document.querySelector("#inicio");
+    let dataAtual = document.querySelector("#fim");
+    dataNasc.value = ("");
+    dataAtual.value = ("");
+    result.innerHTML = ("");
+}
+function limpar12() {
+    var result = document.querySelector('#result');
+    let dataNasc = document.querySelector("#inicio");
+    let dataAtual = document.querySelector("#fim");
+    dataNasc.value = ("");
+    dataAtual.value = ("");
+    result.innerHTML = ("");
+}
+function limpar13() {
+    var num1 = document.querySelector('.antecessor');
+    var result = document.querySelector('#result');
+    num1.value = ("");
+    result.innerHTML = ("");
+    apagarDiv();
+}
+function limpar14() {
+    var conta = document.querySelector('.salarioAtual');
+    var result = document.querySelector("#result");
+    conta.value = ("");
+    result.innerHTML = ("");
+
+}
+
+//CALCULADORA
+function insert(num) {
+    var numero = document.getElementById('resultado').innerHTML;
+    document.getElementById('resultado').innerHTML = numero + num;
+}
+function clean() {
+    document.getElementById('resultado').innerHTML = "";
+}
+function back() {
+    var resultado = document.getElementById('resultado').innerHTML;
+    document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1);
+}
+function calcular() {
+    var resultado = document.getElementById('resultado').innerHTML;
+    if (resultado) {
+        document.getElementById('resultado').innerHTML = eval(resultado);
+    }
+    else {
+        document.getElementById('resultado').innerHTML = "Nada..."
+    }
 }
